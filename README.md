@@ -25,6 +25,13 @@ Input files:
 (iii) tools_NMF.py .*
 
 **(4) tools_NMF.py**
-*Description*: Some plotting and image display tools written by Fernando SOLDEVILA used in (1) and (3). You may check his repository for more image analysis tools and light propagation simulation codes: https://github.com/cbasedlf/optsim
+*Description*: Some plotting and image display tools written by Fernando SOLDEVILA used in (1) and (3). 
 
-- check also Complex Media Optics Lab GitHub: https://github.com/comediaLKB
+You may check other repositories (see below) for more image analysis and light propagation simulation tools.
+
+- See also: Complex Media Optics Lab GitHub:
+  - https://github.com/comediaLKB ;
+  - https://github.com/comediaLKB/DemixedFiberPhotometry
+ 
+- See also: Fernando SOLDEVILA GitHub:
+  - https://github.com/cbasedlf/optsim
