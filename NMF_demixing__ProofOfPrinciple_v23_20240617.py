@@ -93,12 +93,12 @@ if make_rank_sameas_numbeads is False:       # Here we chose if thoe NMF rank is
     other_rank = 7     # if "add_BGD_to_rank = True" , then rank = other_rank + 1  
     
 if remove_initial_frames is True:            # Here we choose if we want to remove some video frames from the NMF analysis
-    first_frames = 50
+    first_frames = 50                        # For example, if at the beginning of the experiment with DMD, there was room light affecting the acquisition
 else:
     first_frames = 0
 
 if remove_single_frame is True:             # Here we choose if we want to remove a single frame from the video
-    frame_to_delete = 618
+    frame_to_delete = 618                   # For example, if at the beginning of the experiment with DMD, there was room light affecting the acquisition
 
 if norm_factor is True:     # Here if we want to normalize the NMF traces to visually compare with GT traces
     norm_factor=0.632       # this was a test to normalize the time traces with a different value (visual display)
@@ -130,7 +130,7 @@ fgt = sio.loadmat(GT_data_str)
 act_gt = fgt['pat'].T 
 numbeads = act_gt.shape[1] #get real number of beads (from ground truth)
 
-# OPTIONAL: removing one single frame from the dataset -- the GT part
+# OPTIONAL: removing one single frame from the dataset -- the GT part  # For example, if at the beginning of the experiment with DMD, there was room light affecting the acquisition
 if remove_single_frame is True:
     old_act_gt = act_gt;
     print('You chose to delete a frame:', frame_to_delete)
@@ -147,13 +147,13 @@ if remove_single_frame is True:
     
 # Normalize ground truth traces (for doing comparisons later) - needs to have the same length to compare
 act_gt_norm = np.zeros(act_gt[first_frames::].shape)
-if remove_initial_frames is False:
+if remove_initial_frames is False:   
     # act_gt_norm = tNMF.norm_dimension(act_gt, dim = 1, mode='0to1') #normalization by the maximum
     matrix= act_gt[first_frames::]
     for idx in range(0,act_gt.shape[1]):
         act_gt_norm[:,idx] = (matrix[:,idx]-np.min(matrix[:,idx]))/(norm_factor*np.max(matrix[:,idx])-np.min(matrix[:,idx]+1e-12))
         pass
-else:
+else:                # For example, if at the beginning of the experiment with DMD, there was room light affecting the acquisition
     # act_gt_norm = tNMF.norm_dimension(act_gt[first_frames::], dim = 1, mode='0to1') #normalization by the maximum
     matrix= act_gt[first_frames::]
     for idx in range(0,act_gt.shape[1]):
@@ -170,7 +170,7 @@ print('Done!')
 print(' ')
 
 # OPTIONAL: removing one single frame from the dataset -- the raw data part
-if remove_single_frame is True:
+if remove_single_frame is True:                           
     old_video = video;
     time_index_to_remove = frame_to_delete + numbeads +1;
     print('Adjusting the data video!')
